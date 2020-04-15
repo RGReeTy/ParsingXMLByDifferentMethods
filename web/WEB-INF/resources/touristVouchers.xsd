@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="touristVouchers" type="touristVouchers"/>
+    <xsd:complexType name="touristVouchers">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="touristVoucher" type="touristVoucher"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="touristVoucher">
+        <xsd:sequence>
+            <xsd:element name="type" type="type"/>
+            <xsd:element name="country" type="countryString"/>
+            <xsd:element name="startDate" type="xsd:date"/>
+            <xsd:element name="numberDaysNights" type="xsd:positiveInteger"/>
+            <xsd:element name="transport" type="transport"/>
+            <xsd:element name="hotelSpecification" type="hotelSpecification"/>
+            <xsd:element name="price" type="xsd:decimal"/>
+        </xsd:sequence>
+        <xsd:attribute name="id" type="xsd:ID" use="required"/>
+    </xsd:complexType>
+
+    <xsd:simpleType name="countryString">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="([A-Z][A-Za-z\s]+)"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="hotelSpecification">
+        <xsd:sequence>
+            <xsd:element name="stars" type="max5Positive"/>
+            <xsd:element name="meals" type="meal"/>
+            <xsd:element name="numberOfRooms" type="max5Positive"/>
+            <xsd:element name="airCondition" type="xsd:boolean"/>
+            <xsd:element name="tv" type="xsd:boolean"/>
+            <xsd:element name="wifi" type="xsd:boolean"/>
+            <xsd:element name="parking" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="max5Positive">
+        <xsd:restriction base="xsd:positiveInteger">
+            <xsd:maxInclusive value="5"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="meal">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="HB"/>
+            <xsd:enumeration value="BB"/>
+            <xsd:enumeration value="AI"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="type">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="WEEKEND"/>
+            <xsd:enumeration value="TOUR"/>
+            <xsd:enumeration value="RELAXATION"/>
+            <xsd:enumeration value="PILGRIMAGE"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="transport">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="AIR"/>
+            <xsd:enumeration value="BUS"/>
+            <xsd:enumeration value="TRAIN"/>
+            <xsd:enumeration value="CAR"/>
+            <xsd:enumeration value="LINER"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>
