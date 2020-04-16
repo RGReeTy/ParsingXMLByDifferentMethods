@@ -1,11 +1,7 @@
 package by.epam.havansky.service.factory;
 
-
 import by.epam.havansky.controller.command.Command;
-import by.epam.havansky.controller.command.command_impl.ErrorMessage;
-import by.epam.havansky.controller.command.command_impl.XMLParseDOM;
-import by.epam.havansky.controller.command.command_impl.XMLParseSAX;
-import by.epam.havansky.controller.command.command_impl.XMLParseStAX;
+import by.epam.havansky.controller.command.command_impl.*;
 
 public class VouchersFactory {
 
