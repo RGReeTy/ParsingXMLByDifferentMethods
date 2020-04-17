@@ -21,6 +21,9 @@ public class XMLParseDOM implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         try {
             AbstractTouristVoucherBuilder builder = new TouristVouchersDOMBuilder();
+
+            //DELETE
+            System.out.println("AbstractTouristVoucherBuilder cr8 at XMLParseDOM");
             Set<TouristVoucher> voucherSet = ParserXML.getInstance().parseXML(request, builder);
             request.setAttribute("resultSet", voucherSet);
             return PageType.PARSE_RESULT_PAGE.getValue();

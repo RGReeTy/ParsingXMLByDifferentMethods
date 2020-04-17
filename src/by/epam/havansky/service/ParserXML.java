@@ -31,7 +31,9 @@ public class ParserXML {
 
     public Set<TouristVoucher> parseXML(HttpServletRequest request, AbstractTouristVoucherBuilder builder) throws ServiceException {
         try {
+            System.out.println("parseXML at ParserXML class");
             XSDValidator xsdValidator = XSDValidator.getInstance();
+            System.out.println("Be4 validator");
             xsdValidator.validateXMLSchema(request);
             Part filePart = request.getPart(CommandType.FILE.getValue());
             InputStream fileContent = filePart.getInputStream();

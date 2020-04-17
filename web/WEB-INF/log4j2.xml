@@ -10,7 +10,7 @@
         </Console>
     </appenders>
     <loggers>
-        <root level="warn">
+        <root level="DEBUG">
             <appender-ref ref="STDOUT"/>
             <appender-ref ref="FILE"/>
         </root>

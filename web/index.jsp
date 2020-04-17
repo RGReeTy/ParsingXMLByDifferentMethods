@@ -7,7 +7,8 @@
 <div class="maintext">
     <h1 align="center">XML file parser</h1>
     <form action="mainServlet" method="post" enctype="multipart/form-data">
-        <p align="center"><input type="file" name="file" accept="*.xml"/></p>>
+        <h1 align="center">Choose a file:</h1>
+        <p align="center"><input type="file" name="file" accept="*.xml"/></p>
         <p align="center">
             <button type="submit" style="width: 200px;height: 100px" name="command" value="DOM">DOM parser</button>
         </p>

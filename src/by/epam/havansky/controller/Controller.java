@@ -31,9 +31,10 @@ public class Controller extends HttpServlet {
     private void handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         //DELETE
         System.out.println("handleRequest starts");
-        String name = request.getParameter(CommandType.COMMAND.getValue());
+        //String name = request.getParameter(CommandType.COMMAND.getValue());
+        String name = request.getParameter("value");
         System.out.println("after request.getParameter");
-        Command command = VouchersFactory.getInstance().chooseParseCommand(name);
+        Command command = VouchersFactory.getInstance().chooseParseCommand("DOM");
         System.out.println("after 'VouchersFactory.getInstance().chooseParseCommand(name)' ");
         String forwardPage = command.execute(request, response);
         System.out.println("after 'command.execute(request, response)' ");

@@ -1,10 +1,6 @@
 package by.epam.havansky.service.builder.dom;
 
-import by.epam.havansky.entity.HotelSpecification;
-import by.epam.havansky.entity.MealType;
-import by.epam.havansky.entity.TouristVoucher;
-import by.epam.havansky.entity.TransportType;
-import by.epam.havansky.entity.VoucherType;
+import by.epam.havansky.entity.*;
 import by.epam.havansky.service.builder.AbstractTouristVoucherBuilder;
 import by.epam.havansky.service.builder.HotelSpecificationBuilder;
 import org.apache.log4j.Logger;
@@ -31,8 +27,12 @@ public class TouristVouchersDOMBuilder extends AbstractTouristVoucherBuilder {
     public TouristVouchersDOMBuilder() {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
+        //DELETE
+        System.out.println("TouristVouchersDOMBuilder factory cr8");
         try {
             documentBuilder = factory.newDocumentBuilder();
+//DELETE
+            System.out.println("newDocumentBuilder cr8");
         } catch (ParserConfigurationException e) {
             logger.error(e);
         }
