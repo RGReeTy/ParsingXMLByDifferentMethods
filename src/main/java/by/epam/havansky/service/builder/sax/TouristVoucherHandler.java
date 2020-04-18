@@ -1,7 +1,6 @@
 package by.epam.havansky.service.builder.sax;
 
 import by.epam.havansky.entity.*;
-import by.epam.javatraining.xmlandwebparser.entity.*;
 import by.epam.havansky.service.builder.TouristVoucherEnum;
 import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;

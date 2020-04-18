@@ -2,7 +2,6 @@ package by.epam.havansky.service.builder.stax;
 
 import by.epam.havansky.entity.*;
 import by.epam.havansky.service.builder.AbstractTouristVoucherBuilder;
-import by.epam.javatraining.xmlandwebparser.entity.*;
 import by.epam.havansky.service.builder.TouristVoucherEnum;
 import org.apache.log4j.Logger;
 import javax.xml.stream.XMLInputFactory;

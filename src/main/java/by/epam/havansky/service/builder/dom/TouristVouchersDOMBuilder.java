@@ -3,7 +3,6 @@ package by.epam.havansky.service.builder.dom;
 import by.epam.havansky.entity.*;
 import by.epam.havansky.service.builder.AbstractTouristVoucherBuilder;
 import by.epam.havansky.service.builder.HotelSpecificationBuilder;
-import by.epam.javatraining.xmlandwebparser.entity.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
