@@ -17,7 +17,7 @@ import java.io.*;
 public class XSDValidator extends DefaultHandler {
     private static final Logger logger = Logger.getLogger(XSDValidator.class);
 
-    private static final String TEMPORARY_XML_FILE = "tempXmlFile.xml";
+    private static final String TEMP_XML_FILE_FOR_SAVING = "tempXmlFile.xml";
     private static final String XSD_VALIDATION_FILE = "touristVouchers.xsd";
 
     private XSDValidator() {
@@ -54,7 +54,7 @@ public class XSDValidator extends DefaultHandler {
         InputStream fileContent = filePart.getInputStream();
         byte[] buffer = new byte[fileContent.available()];
         fileContent.read(buffer);
-        File tempFile = new File(TEMPORARY_XML_FILE);
+        File tempFile = new File(TEMP_XML_FILE_FOR_SAVING);
         OutputStream outputStream = new FileOutputStream(tempFile);
         outputStream.write(buffer);
 

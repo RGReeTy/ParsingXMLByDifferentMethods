@@ -18,7 +18,6 @@ public class Controller extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             handleRequest(request, response);
-
     }
 
     private void handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

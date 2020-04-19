@@ -1,9 +1,10 @@
 package by.epam.havansky.service.builder;
 
+import by.epam.havansky.entity.HotelSpecification;
 import by.epam.havansky.entity.TouristVoucher;
 import by.epam.havansky.entity.TransportType;
-import by.epam.havansky.entity.HotelSpecification;
 import by.epam.havansky.entity.VoucherType;
+
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.text.ParseException;

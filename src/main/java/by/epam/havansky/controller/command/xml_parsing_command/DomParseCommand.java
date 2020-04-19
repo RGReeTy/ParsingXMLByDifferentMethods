@@ -1,4 +1,4 @@
-package by.epam.havansky.controller.command.parsecommand;
+package by.epam.havansky.controller.command.xml_parsing_command;
 
 import by.epam.havansky.controller.command.Command;
 import by.epam.havansky.controller.command.PageType;
@@ -19,6 +19,7 @@ public class DomParseCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         try {
+            logger.info("Executing DomParseCommand");
             AbstractTouristVoucherBuilder builder = new TouristVouchersDOMBuilder();
             Set<TouristVoucher> voucherSet = ParserXML.getInstance().parseXML(request, builder);
             request.setAttribute("resultSet", voucherSet);

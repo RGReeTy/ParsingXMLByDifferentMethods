@@ -1,4 +1,4 @@
-package by.epam.havansky.controller.command.parsecommand;
+package by.epam.havansky.controller.command.xml_parsing_command;
 
 import by.epam.havansky.controller.command.Command;
 import by.epam.havansky.controller.command.PageType;
@@ -12,12 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Set;
 
-public class StaxParseCommand implements Command {
-    private static final Logger logger = Logger.getLogger(StaxParseCommand.class);
+public class SaxParseCommand implements Command {
+    private static final Logger logger = Logger.getLogger(SaxParseCommand.class);
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+
         try {
+            logger.info("Executing SaxParseCommand");
             AbstractTouristVoucherBuilder builder = new TouristVouchersSAXBuilder();
             Set<TouristVoucher> voucherSet = ParserXML.getInstance().parseXML(request, builder);
             request.setAttribute("resultSet", voucherSet);

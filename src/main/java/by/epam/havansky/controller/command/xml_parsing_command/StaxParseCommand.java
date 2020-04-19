@@ -1,4 +1,4 @@
-package by.epam.havansky.controller.command.parsecommand;
+package by.epam.havansky.controller.command.xml_parsing_command;
 
 import by.epam.havansky.controller.command.Command;
 import by.epam.havansky.controller.command.PageType;
@@ -7,19 +7,20 @@ import by.epam.havansky.service.builder.AbstractTouristVoucherBuilder;
 import by.epam.havansky.service.ServiceException;
 import by.epam.havansky.service.ParserXML;
 import by.epam.havansky.service.builder.sax.TouristVouchersSAXBuilder;
+import by.epam.havansky.service.builder.stax.TouristVoucherSTAXBuilder;
 import org.apache.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Set;
 
-public class SaxParseCommand implements Command {
-    private static final Logger logger = Logger.getLogger(SaxParseCommand.class);
+public class StaxParseCommand implements Command {
+    private static final Logger logger = Logger.getLogger(StaxParseCommand.class);
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-
         try {
-            AbstractTouristVoucherBuilder builder = new TouristVouchersSAXBuilder();
+            logger.info("Executing StaxParseCommand");
+            AbstractTouristVoucherBuilder builder = new TouristVoucherSTAXBuilder();
             Set<TouristVoucher> voucherSet = ParserXML.getInstance().parseXML(request, builder);
             request.setAttribute("resultSet", voucherSet);
             return PageType.PARSE_RESULT_PAGE.getValue();
