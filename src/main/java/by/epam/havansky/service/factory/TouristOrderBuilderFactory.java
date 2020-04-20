@@ -6,20 +6,21 @@ import by.epam.havansky.controller.command.xml_parsing_command.ErrorMessageComma
 import by.epam.havansky.controller.command.xml_parsing_command.SaxParseCommand;
 import by.epam.havansky.controller.command.xml_parsing_command.StaxParseCommand;
 
-public class TouristVoucherBuilderFactory {
+public class TouristOrderBuilderFactory {
 
-    private TouristVoucherBuilderFactory() {
+    private TouristOrderBuilderFactory() {
     }
 
-    private static class TouristVoucherBuilderFactorySingleton {
-        private static final TouristVoucherBuilderFactory INSTANCE = new TouristVoucherBuilderFactory();
+    private static class TouristOrderBuilderFactorySingleton {
+        private static final TouristOrderBuilderFactory INSTANCE = new TouristOrderBuilderFactory();
     }
 
-    public static TouristVoucherBuilderFactory getInstance() {
-        return TouristVoucherBuilderFactorySingleton.INSTANCE;
+    public static TouristOrderBuilderFactory getInstance() {
+        return TouristOrderBuilderFactorySingleton.INSTANCE;
     }
 
     public Command chooseParseCommand(String builderName) {
+        System.out.println(builderName);
         switch (builderName) {
             case "SAX_PARSER":
                 return new SaxParseCommand();

@@ -1,9 +1,9 @@
 package by.epam.havansky.service;
 
-import by.epam.havansky.service.validator.XSDValidator;
-import by.epam.havansky.service.builder.AbstractTouristVoucherBuilder;
 import by.epam.havansky.controller.command.CommandType;
-import by.epam.havansky.entity.TouristVoucher;
+import by.epam.havansky.entity.TourOrder;
+import by.epam.havansky.service.builder.AbstractTouristOrderBuilder;
+import by.epam.havansky.service.validator.XSDValidator;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -18,6 +18,7 @@ public class ParserXML {
     private static final Logger logger = Logger.getLogger(ParserXML.class);
 
     private ParserXML() {
+        logger.info("ParserXML constructor");
     }
 
     private static class ParserXMLHolder {
@@ -28,17 +29,18 @@ public class ParserXML {
         return ParserXMLHolder.INSTANCE;
     }
 
-    public Set<TouristVoucher> parseXML(HttpServletRequest request, AbstractTouristVoucherBuilder builder) throws ServiceException {
+    public Set<TourOrder> parseXML(HttpServletRequest request, AbstractTouristOrderBuilder builder) throws ServiceException {
+        logger.info("parseXML in ParserXML starts");
         try {
             XSDValidator xsdValidator = XSDValidator.getInstance();
             xsdValidator.validateXMLSchema(request);
             Part filePart = request.getPart(CommandType.FILE.getValue());
             InputStream fileContent = filePart.getInputStream();
-            builder.buildSetTouristVouchers(fileContent);
+            builder.buildSetTourOrders(fileContent);
         } catch (IOException | ServletException | ParseException e) {
             logger.error(e);
             throw new ServiceException(e);
         }
-        return builder.getTouristVoucherSet();
+        return builder.getTourOrderSet();
     }
 }

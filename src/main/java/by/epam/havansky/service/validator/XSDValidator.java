@@ -18,9 +18,10 @@ public class XSDValidator extends DefaultHandler {
     private static final Logger logger = Logger.getLogger(XSDValidator.class);
 
     private static final String TEMP_XML_FILE_FOR_SAVING = "tempXmlFile.xml";
-    private static final String XSD_VALIDATION_FILE = "touristVouchers.xsd";
+    private static final String XSD_VALIDATION_FILE = "touristOrders.xsd";
 
     private XSDValidator() {
+        logger.info("XSDValidator constructor ");
     }
 
     private static class XSDValidatorHolder {
@@ -32,9 +33,10 @@ public class XSDValidator extends DefaultHandler {
     }
 
     public void validateXMLSchema(HttpServletRequest request) {
+        logger.info("validateXMLSchema starts (XSDValidator.kava) ");
         try {
             File targetFile = writeTemporaryFile(request);
-            File xsdFile = new File(getTouristVoucherXsdPath());
+            File xsdFile = new File(getTourOrdersXsdPath());
             SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
             Schema schema = factory.newSchema(xsdFile);
             Validator validator = schema.newValidator();
@@ -44,13 +46,15 @@ public class XSDValidator extends DefaultHandler {
         }
     }
 
-    private String getTouristVoucherXsdPath() {
+    private String getTourOrdersXsdPath() {
+        logger.info("getTourOrdersXsdPath starts (XSDValidator.kava) ");
         ClassLoader classLoader = getClass().getClassLoader();
         return classLoader.getResource(XSD_VALIDATION_FILE).getPath();
     }
 
     private File writeTemporaryFile(HttpServletRequest request) throws IOException, ServletException {
         Part filePart = request.getPart(CommandType.FILE.getValue());
+        logger.info("Loading filepart from request");
         InputStream fileContent = filePart.getInputStream();
         byte[] buffer = new byte[fileContent.available()];
         fileContent.read(buffer);
