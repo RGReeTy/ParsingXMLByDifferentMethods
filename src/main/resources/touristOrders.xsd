@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="touristOrders" type="touristOrders"/>
+    <xsd:complexType name="touristOrders">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="touristOrder" type="touristOrder"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="touristOrder">
+        <xsd:sequence>
+            <xsd:element name="firstname" type="xsd:string"/>
+            <xsd:element name="lastname" type="xsd:string"/>
+            <xsd:element name="startDate" type="xsd:date"/>
+            <xsd:element name="tourSpecification" type="tourSpecification"/>
+        </xsd:sequence>
+        <xsd:attribute name="id" type="xsd:ID" use="required"/>
+    </xsd:complexType>
+
+
+    <xsd:complexType name="tourSpecification">
+        <xsd:sequence>
+            <xsd:element name="tour" type="xsd:string"/>
+            <xsd:element name="tourType" type="tourType"/>
+            <xsd:element name="numberOfDays" type="intPositive"/>
+            <xsd:element name="transport" type="transport"/>
+            <xsd:element name="country" type="countryString"/>
+            <xsd:element name="price" type="xsd:decimal"/>
+            <xsd:element name="visaNeeded" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="tourType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="SHOPPING"/>
+            <xsd:enumeration value="VACATION"/>
+            <xsd:enumeration value="EXCURSION"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="intPositive">
+        <xsd:restriction base="xsd:positiveInteger">
+            <xsd:minInclusive value="1"/>
+            <xsd:maxInclusive value="15"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="transport">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="AIR"/>
+            <xsd:enumeration value="BUS"/>
+            <xsd:enumeration value="TRAIN"/>
+            <xsd:enumeration value="LINER"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="countryString">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="([A-ZА-Яа-я][A-Za-zА-Яа-я\s]+)"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>

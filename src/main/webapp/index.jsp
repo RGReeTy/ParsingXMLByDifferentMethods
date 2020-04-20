@@ -13,7 +13,7 @@
 <body>
 <div>
     <h1 align="center">Upload yours xml file and then choose a xml-parser</h1>
-    <form action="mainServlet" method="post" enctype="multipart/form-data">
+    <form action="controller" method="post" enctype="multipart/form-data">
         <p align="center"><input type="file" name="file" accept=".xml"/></p>
         <p align="center" >
             <button type="submit" style="width: 25%; height: 25%" name="command" value="SAX_PARSER">SAX parser</button>

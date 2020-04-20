@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<touristOrders xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:noNamespaceSchemaLocation="touristOrders.xsd">
+    <touristOrder id="lviv16042019">
+        <firstname>Constantine</firstname>
+        <lastname>Havansky</lastname>
+        <startDate>2019-04-16</startDate>
+        <tourSpecification>
+            <tour>Чарующий Львов!</tour>
+            <tourType>EXCURSION</tourType>
+            <numberOfDays>5</numberOfDays>
+            <transport>BUS</transport>
+            <country>Украина</country>
+            <price>75.5</price>
+            <visaNeeded>false</visaNeeded>
+        </tourSpecification>
+    </touristOrder>
+
+    <touristOrder id="Stockholm10052018">
+        <firstname>Johny</firstname>
+        <lastname>Newman</lastname>
+        <startDate>2018-05-10</startDate>
+        <tourSpecification>
+            <tour>Королевский Стокгольм</tour>
+            <tourType>SHOPPING</tourType>
+            <numberOfDays>3</numberOfDays>
+            <transport>LINER</transport>
+            <country>Швеция</country>
+            <price>150</price>
+            <visaNeeded>true</visaNeeded>
+        </tourSpecification>
+    </touristOrder>
+
+
+    <touristOrder id="Georgia17082017">
+        <firstname>Happy</firstname>
+        <lastname>Man</lastname>
+        <startDate>2017-08-17</startDate>
+        <tourSpecification>
+            <tour>Роскошный отдых в Грузии</tour>
+            <tourType>VACATION</tourType>
+            <numberOfDays>14</numberOfDays>
+            <transport>AIR</transport>
+            <country>Грузия</country>
+            <price>342</price>
+            <visaNeeded>false</visaNeeded>
+        </tourSpecification>
+    </touristOrder>
+</touristOrders>
+
+
