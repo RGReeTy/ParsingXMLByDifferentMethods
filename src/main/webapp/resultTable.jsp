@@ -13,44 +13,37 @@
     <title>Result</title>
 </head>
 <body>
-<h1 align="center">All tourist vouchers: </h1>
+<h1 align="center">Orders list:</h1>
 <table border="1" align="center" width="90%">
     <thead>
     <tr>
-        <th scope="col">id</th>
-        <th scope="col">Voucher type</th>
+        <th scope="col">ID</th>
+        <th scope="col">Firstname</th>
+        <th scope="col">Lastname</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">Tour</th>
+        <th scope="col">Tour Type</th>
+        <th scope="col">Number Of Days</th>
+        <th scope="col">Transport</th>
         <th scope="col">Country</th>
-        <th scope="col">Date</th>
-        <th scope="col">Number Days</th>
-        <th scope="col">Transport type</th>
-        <th scope="col">Hotel stars</th>
-        <th scope="col">Meal type</th>
-        <th scope="col">Rooms number</th>
-        <th scope="col">Air condition</th>
-        <th scope="col">Tv</th>
-        <th scope="col">Wifi</th>
-        <th scope="col">Parking</th>
         <th scope="col">Price</th>
+        <th scope="col">Visa needed</th>
     </tr>
     </thead>
     <tbody>
-
-    <c:forEach var="vouchersSet" items="${resultSet}" varStatus="status">
+    <c:forEach var="orderSet" items="${resultSet}" varStatus="status">
         <tr align="center">
-            <td><c:out value="${vouchersSet.id}"/></td>
-            <td><c:out value="${vouchersSet.voucherType}"/></td>
-            <td><c:out value="${vouchersSet.country}"/></td>
-            <td><c:out value="${vouchersSet.date}"/></td>
-            <td><c:out value="${vouchersSet.numberDays}"/></td>
-            <td><c:out value="${vouchersSet.transportType}"/></td>
-            <td><c:out value="${vouchersSet.hotelSpecification.starsNumber}"/></td>
-            <td><c:out value="${vouchersSet.hotelSpecification.mealType}"/></td>
-            <td><c:out value="${vouchersSet.hotelSpecification.numberOfRooms}"/></td>
-            <td><c:out value="${vouchersSet.hotelSpecification.airCondition}"/></td>
-            <td><c:out value="${vouchersSet.hotelSpecification.tv}"/></td>
-            <td><c:out value="${vouchersSet.hotelSpecification.wifi}"/></td>
-            <td><c:out value="${vouchersSet.hotelSpecification.parking}"/></td>
-            <td><c:out value="${vouchersSet.price}"/></td>
+            <td><c:out value="${orderSet.id}"/></td>
+            <td><c:out value="${orderSet.firstname}"/></td>
+            <td><c:out value="${orderSet.lastname}"/></td>
+            <td><c:out value="${orderSet.startDate}"/></td>
+            <td><c:out value="${orderSet.tourSpecificationtour}"/></td>
+            <td><c:out value="${orderSet.tourSpecificationtourType}"/></td>
+            <td><c:out value="${orderSet.tourSpecificationnumberOfDays}"/></td>
+            <td><c:out value="${orderSet.tourSpecificationtransport}"/></td>
+            <td><c:out value="${orderSet.tourSpecificationcountry}"/></td>
+            <td><c:out value="${orderSet.tourSpecificationprice}"/></td>
+            <td><c:out value="${orderSet.tourSpecificationvisaNeeded}"/></td>
         </tr>
     </c:forEach>
     </tbody>

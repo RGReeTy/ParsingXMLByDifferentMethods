@@ -15,7 +15,9 @@
 
 <body>
 <h1 align="center">Sorry, something went wrong...</h1>
-        <div class="error-message-container">
+
+        <!-- TODO ! Вставить картинка с ошибкой -->
+        <div class="error">
             <p><h2 align="center">Error status: ${pageContext.errorData.statusCode}</h2></p>
             <p><h2 align="center">Request URI: ${pageContext.errorData.requestURI}</h2></p>
         </div>

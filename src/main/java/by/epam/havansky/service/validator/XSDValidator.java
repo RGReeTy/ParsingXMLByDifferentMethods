@@ -37,7 +37,9 @@ public class XSDValidator extends DefaultHandler {
         try {
             File targetFile = writeTemporaryFile(request);
             File xsdFile = new File(getTourOrdersXsdPath());
+            logger.info("getTourOrdersXsdPath return the temp file (XSDValidator.java) ");
             SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            logger.info("SchemaFactory cr8 (XSDValidator.java) ");
             Schema schema = factory.newSchema(xsdFile);
             Validator validator = schema.newValidator();
             validator.validate(new StreamSource(targetFile));
@@ -47,7 +49,7 @@ public class XSDValidator extends DefaultHandler {
     }
 
     private String getTourOrdersXsdPath() {
-        logger.info("getTourOrdersXsdPath starts (XSDValidator.kava) ");
+        logger.info("getTourOrdersXsdPath starts (XSDValidator.java) ");
         ClassLoader classLoader = getClass().getClassLoader();
         return classLoader.getResource(XSD_VALIDATION_FILE).getPath();
     }

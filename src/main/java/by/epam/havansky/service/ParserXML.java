@@ -30,12 +30,16 @@ public class ParserXML {
     }
 
     public Set<TourOrder> parseXML(HttpServletRequest request, AbstractTouristOrderBuilder builder) throws ServiceException {
-        logger.info("parseXML in ParserXML starts");
+        logger.info("parseXML in ParserXML starts. before cr8 validator");
         try {
             XSDValidator xsdValidator = XSDValidator.getInstance();
+            logger.info("after cr8 validator in ParserXML ");
             xsdValidator.validateXMLSchema(request);
+            logger.info("after valid of validator in ParserXML");
             Part filePart = request.getPart(CommandType.FILE.getValue());
+            logger.info("after cr8 of filepart in ParserXML");
             InputStream fileContent = filePart.getInputStream();
+            logger.info("after cr8 filecontent in ParserXML");
             builder.buildSetTourOrders(fileContent);
         } catch (IOException | ServletException | ParseException e) {
             logger.error(e);
