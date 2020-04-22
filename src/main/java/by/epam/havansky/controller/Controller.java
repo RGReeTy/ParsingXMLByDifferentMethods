@@ -31,7 +31,7 @@ public class Controller extends HttpServlet {
         Command command = TouristOrderBuilderFactory.getInstance().chooseParseCommand(name);
         logger.info("after choosing command" + command.toString());
         String forwardPage = command.execute(request, response);
-        logger.info("after command.execute" + forwardPage);
+        logger.info("after command.execute + " + forwardPage);
         request.getRequestDispatcher(forwardPage).forward(request, response);
     }
 }

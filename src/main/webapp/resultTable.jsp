@@ -31,19 +31,19 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach var="orderSet" items="${resultSet}" varStatus="status">
+    <c:forEach var="TourOrder" items="${OrdersSet}" varStatus="status">
         <tr align="center">
-            <td><c:out value="${orderSet.id}"/></td>
-            <td><c:out value="${orderSet.firstname}"/></td>
-            <td><c:out value="${orderSet.lastname}"/></td>
-            <td><c:out value="${orderSet.startDate}"/></td>
-            <td><c:out value="${orderSet.tourSpecificationtour}"/></td>
-            <td><c:out value="${orderSet.tourSpecificationtourType}"/></td>
-            <td><c:out value="${orderSet.tourSpecificationnumberOfDays}"/></td>
-            <td><c:out value="${orderSet.tourSpecificationtransport}"/></td>
-            <td><c:out value="${orderSet.tourSpecificationcountry}"/></td>
-            <td><c:out value="${orderSet.tourSpecificationprice}"/></td>
-            <td><c:out value="${orderSet.tourSpecificationvisaNeeded}"/></td>
+            <td><c:out value="${TourOrder.id}"/></td>
+            <td><c:out value="${TourOrder.firstname}"/></td>
+            <td><c:out value="${TourOrder.lastname}"/></td>
+            <td><c:out value="${TourOrder.date}"/></td>
+            <td><c:out value="${TourOrder.tourSpecification.tourDescription}"/></td>
+            <td><c:out value="${TourOrder.tourSpecification.tourType}"/></td>
+            <td><c:out value="${TourOrder.tourSpecification.numberOfDays}"/></td>
+            <td><c:out value="${TourOrder.tourSpecification.transportType}"/></td>
+            <td><c:out value="${TourOrder.tourSpecification.country}"/></td>
+            <td><c:out value="${TourOrder.tourSpecification.price}"/></td>
+            <td><c:out value="${TourOrder.tourSpecification.visaNeeded}"/></td>
         </tr>
     </c:forEach>
     </tbody>
