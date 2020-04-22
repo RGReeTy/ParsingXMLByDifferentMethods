@@ -34,14 +34,20 @@ public class TourOrderSTAXBuilder extends AbstractTouristOrderBuilder {
         XMLStreamReader reader = null;
         String name;
 
+        logger.debug("Start buildSetTourOrders in TourOrderSTAXBuilder");
+
         try {
             reader = inputFactory.createXMLStreamReader(source);
+
+            logger.debug("after reader = inputFactory.createXMLStreamReader(source), before while circle");
+
             while (reader.hasNext()) {
                 int type = reader.next();
                 if (type == XMLStreamConstants.START_ELEMENT) {
                     name = reader.getLocalName();
                     if (TouristOrderEnum.valueOf(name.toUpperCase()) == TouristOrderEnum.TOURISTORDER) {
                         TourOrder tourOrder = buildTourOrder(reader);
+                        //tourOrderSet.add(tourOrder);
                     }
                 }
             }
@@ -59,9 +65,11 @@ public class TourOrderSTAXBuilder extends AbstractTouristOrderBuilder {
     }
 
     private TourOrder buildTourOrder(XMLStreamReader reader) throws XMLStreamException, ParseException {
+        logger.debug("Start buildTourOrder");
+
         TourOrder tourOrder = new TourOrder();
         tourOrder.setId(reader.getAttributeValue(ID_ATTRIBUTE_POSITION));
-
+        logger.debug(" buildTourOrder " + tourOrder.getId());
         String name;
         while (reader.hasNext()) {
             int type = reader.next();
@@ -72,34 +80,41 @@ public class TourOrderSTAXBuilder extends AbstractTouristOrderBuilder {
                     switch (TouristOrderEnum.valueOf(name.toUpperCase())) {
                         case FIRSTNAME:
                             tourOrder.setFirstname(getXMLText(reader));
+                            logger.debug(tourOrder.getFirstname());
                             break;
                         case LASTNAME:
                             tourOrder.setLastname(getXMLText(reader));
+                            logger.debug(tourOrder.getLastname());
                             break;
                         case STARTDATE:
                             tourOrder.setDate((new SimpleDateFormat("yyyy-MM-dd").parse(getXMLText(reader))));
+                            logger.debug(tourOrder.getDate());
                             break;
                         case TOURSPECIFICATION:
                             tourOrder.setTourSpecification(getXMLTourSpecification(reader));
+                            logger.debug(tourOrder.getTourSpecification());
                             break;
                     }
                     break;
                 case XMLStreamConstants.END_ELEMENT:
                     name = reader.getLocalName();
                     if (TouristOrderEnum.valueOf(name.toUpperCase()) == TouristOrderEnum.TOURISTORDERS) {
+                        logger.debug(tourOrder.toString());
+                        tourOrderSet.add(tourOrder);
                         return tourOrder;
                     }
                     break;
             }
         }
 
-        throw new XMLStreamException("Unknown element in tag touristVoucher");
+        throw new XMLStreamException("Unknown element in tag tourOrder");
     }
 
     private TourSpecification getXMLTourSpecification(XMLStreamReader reader) throws XMLStreamException {
         TourSpecification tourSpecification = new TourSpecification();
         int type;
         String name;
+        logger.debug("start getXMLTourSpecification");
 
         while (reader.hasNext()) {
             type = reader.next();
@@ -110,24 +125,31 @@ public class TourOrderSTAXBuilder extends AbstractTouristOrderBuilder {
                     switch (TouristOrderEnum.valueOf(name.toUpperCase())) {
                         case TOUR:
                             tourSpecification.setTourDescription(getXMLText(reader));
+                            logger.debug(tourSpecification.getTourDescription());
                             break;
-                        case TYPE:
+                        case TOURTYPE:
                             tourSpecification.setTourType(TourType.valueOf(getXMLText(reader)));
+                            logger.debug(tourSpecification.getTourType());
                             break;
                         case NUMBEROFDAYS:
                             tourSpecification.setNumberOfDays(Integer.parseInt(getXMLText(reader)));
+                            logger.debug(tourSpecification.getNumberOfDays());
                             break;
                         case TRANSPORT:
                             tourSpecification.setTransportType(TransportType.valueOf(getXMLText(reader)));
+                            logger.debug(tourSpecification.getTransportType());
                             break;
                         case COUNTRY:
                             tourSpecification.setCountry(getXMLText(reader));
+                            logger.debug(tourSpecification.getCountry());
                             break;
                         case PRICE:
                             tourSpecification.setPrice(new BigDecimal(getXMLText(reader)));
+                            logger.debug(tourSpecification.getPrice());
                             break;
                         case VISANEEDED:
                             tourSpecification.setVisaNeeded(Boolean.parseBoolean(getXMLText(reader)));
+                            logger.debug(tourSpecification.isVisaNeeded());
                             break;
                     }
                     break;
@@ -140,7 +162,7 @@ public class TourOrderSTAXBuilder extends AbstractTouristOrderBuilder {
             }
         }
 
-        throw new XMLStreamException("Unknown element in tag 'TouristSpecification'");
+        throw new XMLStreamException("Unknown element in tag 'TourSpecification'");
     }
 
     private String getXMLText(XMLStreamReader reader) throws XMLStreamException {
