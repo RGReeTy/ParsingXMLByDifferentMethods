@@ -23,7 +23,8 @@ public class DomParseCommand implements Command {
             AbstractTouristOrderBuilder builder = new TourOrdersDOMBuilder();
             Set<TourOrder> orderSet = ParserXML.getInstance().parseXML(request, builder);
             logger.info("after parsing and returning set EXECUTE " + orderSet.size());
-            request.setAttribute("resultSet", orderSet);
+            request.setAttribute("OrdersSet", orderSet);
+            //logger.debug(request.getAttribute("resultSet").toString());
             return PageType.PARSE_RESULT_PAGE.getValue();
         } catch (ServiceException e) {
             logger.error(e);

@@ -28,7 +28,7 @@ public class TourOrdersDOMBuilder extends AbstractTouristOrderBuilder {
 
     public TourOrdersDOMBuilder() {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-
+        logger.debug("constructor TourOrdersDOMBuilder");
         try {
             documentBuilder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
@@ -49,6 +49,7 @@ public class TourOrdersDOMBuilder extends AbstractTouristOrderBuilder {
                 Element tourOrdersElement = (Element) tourOrders.item(i);
                 TourOrder example = buildTourOrders(tourOrdersElement);
                 tourOrderSet.add(example);
+                logger.debug("after cr8 TourOrder: " + example.toString());
             }
         } catch (SAXException | IOException e) {
             logger.error(e);
@@ -65,6 +66,7 @@ public class TourOrdersDOMBuilder extends AbstractTouristOrderBuilder {
                 .buildPrice(new BigDecimal(getElementTextContent(element, "price")))
                 .buildVisaNeeded(Boolean.parseBoolean(getElementTextContent(element, "visaNeeded")));
         TourSpecification tourSpecification = new TourSpecification(tourSpecificationBuilder);
+        logger.debug("after tourSpecification " + tourSpecification.toString());
 
         AbstractTouristOrderBuilder builder = new TourOrdersDOMBuilder()
                 .buildId(element.getAttribute("id"))
@@ -72,7 +74,7 @@ public class TourOrdersDOMBuilder extends AbstractTouristOrderBuilder {
                 .buildLastname(String.valueOf(getElementTextContent(element, "lastname")))
                 .buildDate(new SimpleDateFormat("yyyy-MM-dd").parse(getElementTextContent(element, "startDate")))
                 .buildTourSpecification(tourSpecification);
-
+        logger.debug("after buildTourSpecification ");
 
         return new TourOrder(builder);
     }

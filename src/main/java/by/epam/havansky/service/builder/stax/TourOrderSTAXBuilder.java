@@ -36,7 +36,6 @@ public class TourOrderSTAXBuilder extends AbstractTouristOrderBuilder {
 
         try {
             reader = inputFactory.createXMLStreamReader(source);
-
             while (reader.hasNext()) {
                 int type = reader.next();
                 if (type == XMLStreamConstants.START_ELEMENT) {
