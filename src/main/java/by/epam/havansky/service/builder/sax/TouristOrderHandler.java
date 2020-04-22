@@ -74,7 +74,7 @@ public class TouristOrderHandler extends DefaultHandler {
                 case TOUR:
                     current.getTourSpecification().setTourDescription(valueOfElement);
                     break;
-                case TYPE:
+                case TOURTYPE:
                     current.getTourSpecification().setTourType(TourType.valueOf(valueOfElement));
                     break;
                 case NUMBEROFDAYS:

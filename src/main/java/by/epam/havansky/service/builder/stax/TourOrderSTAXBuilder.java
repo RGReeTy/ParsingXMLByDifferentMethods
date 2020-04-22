@@ -45,9 +45,10 @@ public class TourOrderSTAXBuilder extends AbstractTouristOrderBuilder {
                 int type = reader.next();
                 if (type == XMLStreamConstants.START_ELEMENT) {
                     name = reader.getLocalName();
+                    logger.debug(reader.getLocalName());
                     if (TouristOrderEnum.valueOf(name.toUpperCase()) == TouristOrderEnum.TOURISTORDER) {
                         TourOrder tourOrder = buildTourOrder(reader);
-                        //tourOrderSet.add(tourOrder);
+                        tourOrderSet.add(tourOrder);
                     }
                 }
             }
@@ -80,27 +81,22 @@ public class TourOrderSTAXBuilder extends AbstractTouristOrderBuilder {
                     switch (TouristOrderEnum.valueOf(name.toUpperCase())) {
                         case FIRSTNAME:
                             tourOrder.setFirstname(getXMLText(reader));
-                            logger.debug(tourOrder.getFirstname());
                             break;
                         case LASTNAME:
                             tourOrder.setLastname(getXMLText(reader));
-                            logger.debug(tourOrder.getLastname());
                             break;
                         case STARTDATE:
                             tourOrder.setDate((new SimpleDateFormat("yyyy-MM-dd").parse(getXMLText(reader))));
-                            logger.debug(tourOrder.getDate());
                             break;
                         case TOURSPECIFICATION:
                             tourOrder.setTourSpecification(getXMLTourSpecification(reader));
-                            logger.debug(tourOrder.getTourSpecification());
                             break;
                     }
                     break;
                 case XMLStreamConstants.END_ELEMENT:
                     name = reader.getLocalName();
-                    if (TouristOrderEnum.valueOf(name.toUpperCase()) == TouristOrderEnum.TOURISTORDERS) {
+                    if (TouristOrderEnum.valueOf(name.toUpperCase()) == TouristOrderEnum.TOURISTORDER) {
                         logger.debug(tourOrder.toString());
-                        tourOrderSet.add(tourOrder);
                         return tourOrder;
                     }
                     break;
@@ -125,37 +121,30 @@ public class TourOrderSTAXBuilder extends AbstractTouristOrderBuilder {
                     switch (TouristOrderEnum.valueOf(name.toUpperCase())) {
                         case TOUR:
                             tourSpecification.setTourDescription(getXMLText(reader));
-                            logger.debug(tourSpecification.getTourDescription());
                             break;
                         case TOURTYPE:
                             tourSpecification.setTourType(TourType.valueOf(getXMLText(reader)));
-                            logger.debug(tourSpecification.getTourType());
                             break;
                         case NUMBEROFDAYS:
                             tourSpecification.setNumberOfDays(Integer.parseInt(getXMLText(reader)));
-                            logger.debug(tourSpecification.getNumberOfDays());
                             break;
                         case TRANSPORT:
                             tourSpecification.setTransportType(TransportType.valueOf(getXMLText(reader)));
-                            logger.debug(tourSpecification.getTransportType());
                             break;
                         case COUNTRY:
                             tourSpecification.setCountry(getXMLText(reader));
-                            logger.debug(tourSpecification.getCountry());
                             break;
                         case PRICE:
                             tourSpecification.setPrice(new BigDecimal(getXMLText(reader)));
-                            logger.debug(tourSpecification.getPrice());
                             break;
                         case VISANEEDED:
                             tourSpecification.setVisaNeeded(Boolean.parseBoolean(getXMLText(reader)));
-                            logger.debug(tourSpecification.isVisaNeeded());
                             break;
                     }
                     break;
                 case XMLStreamConstants.END_ELEMENT:
                     name = reader.getLocalName();
-                    if (TouristOrderEnum.valueOf(name.toUpperCase()) == TouristOrderEnum.TOURISTORDER) {
+                    if (TouristOrderEnum.valueOf(name.toUpperCase()) == TouristOrderEnum.TOURSPECIFICATION) {
                         return tourSpecification;
                     }
                     break;
