@@ -6,6 +6,7 @@ import by.epam.havansky.entity.TourType;
 import by.epam.havansky.entity.TransportType;
 import by.epam.havansky.service.builder.AbstractTouristOrderBuilder;
 import by.epam.havansky.service.builder.TourSpecificationBuilder;
+import by.epam.havansky.service.builder.TouristOrderEnum;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -43,7 +44,7 @@ public class TourOrdersDOMBuilder extends AbstractTouristOrderBuilder {
         try {
             document = documentBuilder.parse(source);
             Element root = document.getDocumentElement();
-            NodeList tourOrders = root.getElementsByTagName("touristOrder");
+            NodeList tourOrders = root.getElementsByTagName(TouristOrderEnum.TOURISTORDER.getValue());
 
             for (int i = 0; i < tourOrders.getLength(); i++) {
                 Element tourOrdersElement = (Element) tourOrders.item(i);
@@ -58,21 +59,21 @@ public class TourOrdersDOMBuilder extends AbstractTouristOrderBuilder {
 
     private TourOrder buildTourOrders(Element element) throws ParseException {
         TourSpecificationBuilder tourSpecificationBuilder = new TourSpecificationBuilder()
-                .buildTourDescription(String.valueOf(getElementTextContent(element, "tour")))
-                .buildTourType(TourType.valueOf(getElementTextContent(element, "tourType")))
-                .buildNumberOfDays(Integer.parseInt(getElementTextContent(element, "numberOfDays")))
-                .buildTransportType(TransportType.valueOf(getElementTextContent(element, "transport")))
-                .buildCountry(String.valueOf(getElementTextContent(element, "country")))
-                .buildPrice(new BigDecimal(getElementTextContent(element, "price")))
-                .buildVisaNeeded(Boolean.parseBoolean(getElementTextContent(element, "visaNeeded")));
+                .buildTourDescription(String.valueOf(getElementTextContent(element, TouristOrderEnum.TOUR.getValue())))
+                .buildTourType(TourType.valueOf(getElementTextContent(element, TouristOrderEnum.TOURTYPE.getValue())))
+                .buildNumberOfDays(Integer.parseInt(getElementTextContent(element, TouristOrderEnum.NUMBEROFDAYS.getValue())))
+                .buildTransportType(TransportType.valueOf(getElementTextContent(element, TouristOrderEnum.TRANSPORT.getValue())))
+                .buildCountry(String.valueOf(getElementTextContent(element, TouristOrderEnum.COUNTRY.getValue())))
+                .buildPrice(new BigDecimal(getElementTextContent(element, TouristOrderEnum.PRICE.getValue())))
+                .buildVisaNeeded(Boolean.parseBoolean(getElementTextContent(element, TouristOrderEnum.VISANEEDED.getValue())));
         TourSpecification tourSpecification = new TourSpecification(tourSpecificationBuilder);
         logger.debug("after tourSpecification " + tourSpecification.toString());
 
         AbstractTouristOrderBuilder builder = new TourOrdersDOMBuilder()
-                .buildId(element.getAttribute("id"))
-                .buildFirstname(String.valueOf(getElementTextContent(element, "firstname")))
-                .buildLastname(String.valueOf(getElementTextContent(element, "lastname")))
-                .buildDate(new SimpleDateFormat("yyyy-MM-dd").parse(getElementTextContent(element, "startDate")))
+                .buildId(element.getAttribute(TouristOrderEnum.ID.getValue()))
+                .buildFirstname(String.valueOf(getElementTextContent(element, TouristOrderEnum.FIRSTNAME.getValue())))
+                .buildLastname(String.valueOf(getElementTextContent(element, TouristOrderEnum.LASTNAME.getValue())))
+                .buildDate(new SimpleDateFormat("yyyy-MM-dd").parse(getElementTextContent(element, TouristOrderEnum.STARTDATE.getValue())))
                 .buildTourSpecification(tourSpecification);
         logger.debug("after buildTourSpecification ");
 

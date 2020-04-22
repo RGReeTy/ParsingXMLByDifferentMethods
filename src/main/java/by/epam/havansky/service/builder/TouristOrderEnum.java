@@ -3,12 +3,13 @@ package by.epam.havansky.service.builder;
 public enum TouristOrderEnum {
     TOURISTORDERS("touristOrders"),
     TOURISTORDER("touristOrder"),
+    ID("id"),
     FIRSTNAME("firstname"),
     LASTNAME("lastname"),
     STARTDATE("startDate"),
 
-    TOUR("tour"), //description of tour
-    TYPE("tourType"),
+    TOUR("tour"),
+    TOURTYPE("tourType"),
     NUMBEROFDAYS("numberOfDays"),
     TRANSPORT("transport"),
     COUNTRY("country"),

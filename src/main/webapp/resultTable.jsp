@@ -49,6 +49,9 @@
     </tbody>
 </table>
 <br>
+
+<br>
+TODO переделать на комманду через контроллер
 <form action="index.jsp">
     <button type="submit" style="width: 200px; height: 150px">Back to main</button>
 </form>
