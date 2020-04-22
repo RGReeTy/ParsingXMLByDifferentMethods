@@ -1,4 +1,4 @@
-package by.epam.havansky.controller.command.xml_parsing_command;
+package by.epam.havansky.controller.command.xml_parsing;
 
 import by.epam.havansky.controller.command.Command;
 import by.epam.havansky.controller.command.PageType;

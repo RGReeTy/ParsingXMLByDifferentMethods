@@ -1,10 +1,10 @@
 package by.epam.havansky.service.factory;
 
 import by.epam.havansky.controller.command.Command;
-import by.epam.havansky.controller.command.xml_parsing_command.DomParseCommand;
-import by.epam.havansky.controller.command.xml_parsing_command.ErrorMessageCommand;
-import by.epam.havansky.controller.command.xml_parsing_command.SaxParseCommand;
-import by.epam.havansky.controller.command.xml_parsing_command.StaxParseCommand;
+import by.epam.havansky.controller.command.xml_parsing.DomParseCommand;
+import by.epam.havansky.controller.command.xml_parsing.ErrorMessageCommand;
+import by.epam.havansky.controller.command.xml_parsing.SaxParseCommand;
+import by.epam.havansky.controller.command.xml_parsing.StaxParseCommand;
 
 public class TouristOrderBuilderFactory {
 
@@ -20,7 +20,6 @@ public class TouristOrderBuilderFactory {
     }
 
     public Command chooseParseCommand(String builderName) {
-        System.out.println(builderName);
         switch (builderName) {
             case "SAX_PARSER":
                 return new SaxParseCommand();

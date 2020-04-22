@@ -34,7 +34,8 @@ public class TouristOrderHandler extends DefaultHandler {
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attrs) {
-        if ("touristOrder".equals(localName)) {
+        //if ("touristOrder".equals(localName)) {
+        if (TouristOrderEnum.TOURISTORDER.getValue().equals(localName)) {
             current = new TourOrder();
             current.setTourSpecification(new TourSpecification());
             current.setId(attrs.getValue(0));
@@ -48,7 +49,7 @@ public class TouristOrderHandler extends DefaultHandler {
 
     @Override
     public void endElement(String uri, String localName, String qName) {
-        if ("touristOrder".equals(localName)) {
+        if (TouristOrderEnum.TOURISTORDER.getValue().equals(localName)) {
             touristOrderSet.add(current);
         }
     }
