@@ -2,10 +2,11 @@ package by.epam.havansky.entity;
 
 import by.epam.havansky.service.builder.AbstractTouristOrderBuilder;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class TourOrder {
+public class TourOrder implements Serializable {
 
     private String id;
     private String firstname;
