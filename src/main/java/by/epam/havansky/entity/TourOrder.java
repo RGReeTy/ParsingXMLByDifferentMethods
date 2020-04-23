@@ -8,6 +8,8 @@ import java.util.Objects;
 
 public class TourOrder implements Serializable {
 
+    private static final long serialVersionUID = 4813284793822171942L;
+
     private String id;
     private String firstname;
     private String lastname;

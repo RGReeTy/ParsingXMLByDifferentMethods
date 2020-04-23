@@ -8,6 +8,7 @@ import java.util.Objects;
 
 public class TourSpecification implements Serializable {
 
+    private static final long serialVersionUID = 6161598812073099900L;
     private String tourDescription;
     private TourType tourType;
     private int numberOfDays;
