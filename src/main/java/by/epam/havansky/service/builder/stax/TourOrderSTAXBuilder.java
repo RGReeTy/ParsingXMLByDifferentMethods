@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 public class TourOrderSTAXBuilder extends AbstractTouristOrderBuilder {
     private static final Logger logger = Logger.getLogger(TourOrderSTAXBuilder.class);
@@ -34,18 +35,13 @@ public class TourOrderSTAXBuilder extends AbstractTouristOrderBuilder {
         XMLStreamReader reader = null;
         String name;
 
-        logger.debug("Start buildSetTourOrders in TourOrderSTAXBuilder");
-
         try {
             reader = inputFactory.createXMLStreamReader(source);
-
-            logger.debug("after reader = inputFactory.createXMLStreamReader(source), before while circle");
 
             while (reader.hasNext()) {
                 int type = reader.next();
                 if (type == XMLStreamConstants.START_ELEMENT) {
                     name = reader.getLocalName();
-                    logger.debug(reader.getLocalName());
                     if (TouristOrderEnum.valueOf(name.toUpperCase()) == TouristOrderEnum.TOURISTORDER) {
                         TourOrder tourOrder = buildTourOrder(reader);
                         tourOrderSet.add(tourOrder);
@@ -66,11 +62,8 @@ public class TourOrderSTAXBuilder extends AbstractTouristOrderBuilder {
     }
 
     private TourOrder buildTourOrder(XMLStreamReader reader) throws XMLStreamException, ParseException {
-        logger.debug("Start buildTourOrder");
-
         TourOrder tourOrder = new TourOrder();
         tourOrder.setId(reader.getAttributeValue(ID_ATTRIBUTE_POSITION));
-        logger.debug(" buildTourOrder " + tourOrder.getId());
         String name;
         while (reader.hasNext()) {
             int type = reader.next();
@@ -86,7 +79,8 @@ public class TourOrderSTAXBuilder extends AbstractTouristOrderBuilder {
                             tourOrder.setLastname(getXMLText(reader));
                             break;
                         case STARTDATE:
-                            tourOrder.setDate((new SimpleDateFormat("yyyy-MM-dd").parse(getXMLText(reader))));
+                            tourOrder.setDate(LocalDate.parse(getXMLText(reader)));
+                            //tourOrder.setDate((new SimpleDateFormat("yyyy-MM-dd").parse(getXMLText(reader))));
                             break;
                         case TOURSPECIFICATION:
                             tourOrder.setTourSpecification(getXMLTourSpecification(reader));
@@ -96,7 +90,6 @@ public class TourOrderSTAXBuilder extends AbstractTouristOrderBuilder {
                 case XMLStreamConstants.END_ELEMENT:
                     name = reader.getLocalName();
                     if (TouristOrderEnum.valueOf(name.toUpperCase()) == TouristOrderEnum.TOURISTORDER) {
-                        logger.debug(tourOrder.toString());
                         return tourOrder;
                     }
                     break;
@@ -110,7 +103,6 @@ public class TourOrderSTAXBuilder extends AbstractTouristOrderBuilder {
         TourSpecification tourSpecification = new TourSpecification();
         int type;
         String name;
-        logger.debug("start getXMLTourSpecification");
 
         while (reader.hasNext()) {
             type = reader.next();

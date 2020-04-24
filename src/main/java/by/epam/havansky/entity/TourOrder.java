@@ -3,6 +3,7 @@ package by.epam.havansky.entity;
 import by.epam.havansky.service.builder.AbstractTouristOrderBuilder;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -13,7 +14,8 @@ public class TourOrder implements Serializable {
     private String id;
     private String firstname;
     private String lastname;
-    private Date date;
+    //private Date date;
+    private LocalDate date;
     private TourSpecification tourSpecification;
 
     public TourOrder(AbstractTouristOrderBuilder builder) {
@@ -52,11 +54,11 @@ public class TourOrder implements Serializable {
         this.lastname = lastname;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

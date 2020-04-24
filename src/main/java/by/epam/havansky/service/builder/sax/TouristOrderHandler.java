@@ -12,6 +12,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
@@ -34,7 +35,6 @@ public class TouristOrderHandler extends DefaultHandler {
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attrs) {
-        //if ("touristOrder".equals(localName)) {
         if (TouristOrderEnum.TOURISTORDER.getValue().equals(localName)) {
             current = new TourOrder();
             current.setTourSpecification(new TourSpecification());
@@ -66,11 +66,8 @@ public class TouristOrderHandler extends DefaultHandler {
                     current.setLastname(valueOfElement);
                     break;
                 case STARTDATE:
-                    try {
-                        current.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(valueOfElement));
-                    } catch (ParseException e) {
-                        logger.error(e);
-                    }
+                    //current.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(valueOfElement));
+                    current.setDate(LocalDate.parse(valueOfElement));
                     break;
                 case TOUR:
                     current.getTourSpecification().setTourDescription(valueOfElement);

@@ -25,7 +25,6 @@ public class Controller extends HttpServlet {
 
     private void handleRequest(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter(CommandType.COMMAND.getValue());
-        logger.debug("request.getParameter: " + name);
         Command command = TouristOrderBuilderFactory.getInstance().chooseParseCommand(name);
         String forwardPage = command.execute(request, response);
         try {

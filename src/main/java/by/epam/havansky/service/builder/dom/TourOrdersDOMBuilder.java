@@ -22,6 +22,7 @@ import java.io.InputStream;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 public class TourOrdersDOMBuilder extends AbstractTouristOrderBuilder {
     private static final Logger logger = Logger.getLogger(TourOrdersDOMBuilder.class);
@@ -29,7 +30,6 @@ public class TourOrdersDOMBuilder extends AbstractTouristOrderBuilder {
 
     public TourOrdersDOMBuilder() {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        logger.debug("constructor TourOrdersDOMBuilder");
         try {
             documentBuilder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
@@ -67,15 +67,14 @@ public class TourOrdersDOMBuilder extends AbstractTouristOrderBuilder {
                 .buildPrice(new BigDecimal(getElementTextContent(element, TouristOrderEnum.PRICE.getValue())))
                 .buildVisaNeeded(Boolean.parseBoolean(getElementTextContent(element, TouristOrderEnum.VISANEEDED.getValue())));
         TourSpecification tourSpecification = new TourSpecification(tourSpecificationBuilder);
-        logger.debug("after tourSpecification " + tourSpecification.toString());
 
         AbstractTouristOrderBuilder builder = new TourOrdersDOMBuilder()
                 .buildId(element.getAttribute(TouristOrderEnum.ID.getValue()))
                 .buildFirstname(String.valueOf(getElementTextContent(element, TouristOrderEnum.FIRSTNAME.getValue())))
                 .buildLastname(String.valueOf(getElementTextContent(element, TouristOrderEnum.LASTNAME.getValue())))
-                .buildDate(new SimpleDateFormat("yyyy-MM-dd").parse(getElementTextContent(element, TouristOrderEnum.STARTDATE.getValue())))
+               // .buildDate(new SimpleDateFormat("yyyy-MM-dd").parse(getElementTextContent(element, TouristOrderEnum.STARTDATE.getValue())))
+                .buildDate(LocalDate.parse(getElementTextContent(element, TouristOrderEnum.STARTDATE.getValue())))
                 .buildTourSpecification(tourSpecification);
-        logger.debug("after buildTourSpecification ");
 
         return new TourOrder(builder);
     }

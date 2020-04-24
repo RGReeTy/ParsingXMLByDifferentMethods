@@ -5,6 +5,7 @@ import by.epam.havansky.entity.TourSpecification;
 
 import java.io.InputStream;
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,7 +15,7 @@ public abstract class AbstractTouristOrderBuilder {
     private String id;
     private String firstname;
     private String lastname;
-    private Date date;
+    private LocalDate date;
     private TourSpecification tourSpecification;
 
 
@@ -47,7 +48,7 @@ public abstract class AbstractTouristOrderBuilder {
         return this;
     }
 
-    public AbstractTouristOrderBuilder buildDate(Date date) {
+    public AbstractTouristOrderBuilder buildDate(LocalDate date) {
         this.date = date;
         return this;
     }
@@ -70,7 +71,7 @@ public abstract class AbstractTouristOrderBuilder {
         return lastname;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
