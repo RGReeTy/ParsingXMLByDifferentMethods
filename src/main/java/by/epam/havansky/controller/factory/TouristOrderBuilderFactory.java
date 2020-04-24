@@ -1,4 +1,4 @@
-package by.epam.havansky.service.factory;
+package by.epam.havansky.controller.factory;
 
 import by.epam.havansky.controller.command.Command;
 import by.epam.havansky.controller.command.xml_parsing.DomParseCommand;

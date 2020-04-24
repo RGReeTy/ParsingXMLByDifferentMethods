@@ -2,7 +2,7 @@ package by.epam.havansky.controller;
 
 import by.epam.havansky.controller.command.Command;
 import by.epam.havansky.controller.command.CommandType;
-import by.epam.havansky.service.factory.TouristOrderBuilderFactory;
+import by.epam.havansky.controller.factory.TouristOrderBuilderFactory;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
